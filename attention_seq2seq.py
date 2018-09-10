@@ -78,8 +78,7 @@ def decoding_layer(target_letter_to_int, decoding_embedding_size, num_layers, rn
 
     # 4. Training decoder
     with tf.variable_scope("decode"):
-        training_helper = tf.contrib.seq2seq.TrainingHelper(inputs=decoder_embed_input,
-                                                            sequence_length=target_sequence_length, time_major=False)
+        training_helper = tf.contrib.seq2seq.TrainingHelper(inputs=decoder_embed_input, sequence_length=target_sequence_length, time_major=False)
 
         training_decoder = tf.contrib.seq2seq.BasicDecoder(attention_decoder_cell,
                                                            training_helper,
