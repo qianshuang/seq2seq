@@ -47,26 +47,26 @@ import numpy as np
 # print(tf.trainable_variables())  # [<tf.Variable 'rnn/basic_rnn_cell/kernel:0' shape=(72, 8) dtype=float32_ref>]
 
 # 同上
-def get_multi_rnn_cell(rnn_size, num_layers):
-    def lstm_cell():
-        return tf.contrib.rnn.LSTMCell(rnn_size, initializer=tf.random_uniform_initializer(-0.1, 0.1, seed=2))
-
-    return tf.contrib.rnn.MultiRNNCell([lstm_cell() for _ in range(num_layers)])
-
-
-encoder_cell = get_multi_rnn_cell(50, 2)
-encoder_cell1 = get_multi_rnn_cell(50, 2)
-encoder_output, encoder_state = tf.nn.dynamic_rnn(
-    encoder_cell,
-    tf.placeholder(tf.float32, [1, 5, 64]),
-    sequence_length=[5],
-    dtype=tf.float32)
-encoder_output1, encoder_state1 = tf.nn.dynamic_rnn(
-    encoder_cell1,
-    tf.placeholder(tf.float32, [1, 5, 64]),
-    sequence_length=[5],
-    dtype=tf.float32)
-print(tf.trainable_variables())
+# def get_multi_rnn_cell(rnn_size, num_layers):
+#     def lstm_cell():
+#         return tf.contrib.rnn.LSTMCell(rnn_size, initializer=tf.random_uniform_initializer(-0.1, 0.1, seed=2))
+#
+#     return tf.contrib.rnn.MultiRNNCell([lstm_cell() for _ in range(num_layers)])
+#
+#
+# encoder_cell = get_multi_rnn_cell(50, 2)
+# encoder_cell1 = get_multi_rnn_cell(50, 2)
+# encoder_output, encoder_state = tf.nn.dynamic_rnn(
+#     encoder_cell,
+#     tf.placeholder(tf.float32, [1, 5, 64]),
+#     sequence_length=[5],
+#     dtype=tf.float32)
+# encoder_output1, encoder_state1 = tf.nn.dynamic_rnn(
+#     encoder_cell1,
+#     tf.placeholder(tf.float32, [1, 5, 64]),
+#     sequence_length=[5],
+#     dtype=tf.float32)
+# print(tf.trainable_variables())
 
 # [
 # <tf.Variable 'source_embedding:0' shape=(30, 15) dtype=float32_ref>,

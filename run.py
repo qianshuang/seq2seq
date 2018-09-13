@@ -2,7 +2,12 @@
 
 import sys
 
-from basic_seq2seq_model import *
+# from basic_model import *
+# from attention_model import *
+# from bilstm_attention_model import *
+# from beamsearch_bilstm_attention_model import *
+# from beamsearch_basic_model import *
+from beamsearch_bilstm_attention_model import *
 from data.cnews_loader import *
 
 import time
@@ -134,7 +139,14 @@ def test():
         # model.is_train: False
     }
     result_ids = session.run(model.result_ids, feed_dict=feed_dict)[0]
-    print('输出: {}'.format("".join([target_id_to_letter[i] for i in result_ids])))
+    # print('输出: {}'.format("".join([target_id_to_letter[i] for i in result_ids])))
+    # beam search输出
+    for x in result_ids:
+        res = []
+        for i in x:
+            if i in target_id_to_letter:
+                res.append(target_id_to_letter[i])
+        print("".join(res))
 
 
 if __name__ == '__main__':
